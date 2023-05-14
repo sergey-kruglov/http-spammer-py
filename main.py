@@ -1,29 +1,32 @@
 import asyncio
-import random
 
-URL = 'http://localhost:3008/api'
-REQUESTS_COUNT = 100
+import aiohttp
+from aiohttp import ClientSession
+
+URL = 'https://outvio.com'
+REQUESTS_COUNT = 50
 HEADERS = {}
 BODY = {}
 
-request_index = 0
 success_count = 0
 
 
 async def main():
-    tasks = []
-    for i in range(REQUESTS_COUNT):
-        task = asyncio.create_task(make_request(i))
-        tasks.append(task)
-    await asyncio.gather(*tasks)
+    """Entry point"""
+    async with aiohttp.ClientSession() as session:
+        tasks = []
+        for number in range(1, REQUESTS_COUNT):
+            tasks.append(make_request(session, number))
+        await asyncio.gather(*tasks)
+        print(f"{success_count}/{REQUESTS_COUNT}")
 
 
-async def make_request(i):
-    await asyncio.sleep(random.randint(0, 2))
-    global success_count, request_index
-    request_index += 1
+async def make_request(session: ClientSession, index: int):
+    """Make async request"""
+    async with session.get(URL) as resp:
+        print(index, resp.status)
+    global success_count
     success_count += 1
-    print(success_count, i, URL)
 
 
 asyncio.run(main())
