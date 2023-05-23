@@ -1,2 +1,2 @@
 # http-spammer-py
-Async HTTP request spammer
+Async HTTP request spammer using Python
