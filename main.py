@@ -3,7 +3,7 @@ import asyncio
 import aiohttp
 from aiohttp import ClientSession
 
-URL = 'https://outvio.com'
+URL = 'https://sergey-kruglov.com'
 REQUESTS_COUNT = 50
 HEADERS = {}
 BODY = {}
