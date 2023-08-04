@@ -1,6 +1,4 @@
 import asyncio
-
-import aiohttp
 from aiohttp import ClientSession
 
 URL = 'https://sergey-kruglov.com'
@@ -13,7 +11,7 @@ success_count = 0
 
 async def main():
     """Entry point"""
-    async with aiohttp.ClientSession() as session:
+    async with ClientSession() as session:
         tasks = []
         for number in range(1, REQUESTS_COUNT):
             tasks.append(make_request(session, number))
