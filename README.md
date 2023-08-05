@@ -1,5 +1,5 @@
 # http-spammer-py
-Async HTTP request spammer using Python
+Async HTTP request spammer using _Python_
 
 Use the following params to configure the script:
 - URL
